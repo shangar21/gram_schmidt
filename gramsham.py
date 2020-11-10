@@ -1,4 +1,5 @@
 import numpy as np 
+import math
 
 #inner product is integral from 0,1 of f*g
 def innerprod(x,y):
@@ -22,8 +23,13 @@ def gram_schmidt(basis):
 		x.append(tmp)
 	return x
 
+def normalize(x):
+	for i in range(len(x)):
+		norm = 1/math.sqrt(innerprod(x[i],x[i]))
+		x[i] = np.polymul(x[i], [norm])
+
 x = (gram_schmidt([[1],[1,0], [1,0,0],[1,0,0,0]]))
 
-print(x)
+normalize(x)
 
-print(innerprod(x[2],x[1]))
+print(x)
